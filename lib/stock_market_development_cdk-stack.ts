@@ -28,7 +28,7 @@ export class StockMarketDevelopmentCdkStack extends cdk.Stack {
       assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
     });
     const lambdaFunction = new lambda.Function(this, 'LambdaFunction', {
-      runtime: lambda.Runtime.NODEJS_18_X, //using node for this, but can easily use python or other
+      runtime: lambda.Runtime.PYTHON_3_10, //using node for this, but can easily use python or other
       handler: 'index.handler',
       code: lambda.Code.fromAsset (path.join(__dirname, 'lambda')), //resolving to ./lambda directory
       role : myRole,
