@@ -1,6 +1,6 @@
 from utils.logger import Logger
 from services.PlaceOrderService import OrderPlaceService
-from models.OrderInfo import OrderInfo, OrderInfoBuilder
+from models.OrderInfo import OrderInfo
 from constants.RequestParams import RequestParams 
 from utils.ParseRequest import RequestParcer
 from exceptions.OrderPlaceError import OrderPlaceError
@@ -16,19 +16,19 @@ class OrderPlaceController():
         Logger.logger.info("Building Order!!!")
 
         try :
-            orderInfo = OrderInfoBuilder()\
-                                .setTradingSymbol(orderRequest[RequestParams.TRADING_SYMBOL])\
-                                .setExchange(orderRequest[RequestParams.EXCHANGE])\
-                                .setOrderType(orderRequest[RequestParams.ORDER_TYPE])\
-                                .setTransactionType(orderRequest[RequestParams.TRANSACTION_TYPE])\
-                                .setOrderVariety(orderRequest[RequestParams.VARIETY])\
-                                .setQuantity(orderRequest[RequestParams.QUANTITY])\
-                                .setPrice(orderRequest[RequestParams.PRICE])\
-                                .build()
-            return orderInfo
+            return OrderInfo.getBuilder()\
+                            .setTradingSymbol(orderRequest[RequestParams.TRADING_SYMBOL])\
+                            .setExchange(orderRequest[RequestParams.EXCHANGE])\
+                            .setOrderType(orderRequest[RequestParams.ORDER_TYPE])\
+                            .setTransactionType(orderRequest[RequestParams.TRANSACTION_TYPE])\
+                            .setOrderVariety(orderRequest[RequestParams.VARIETY])\
+                            .setQuantity(orderRequest[RequestParams.QUANTITY])\
+                            .setPrice(orderRequest[RequestParams.PRICE])\
+                            .build()
+        
         except Exception as e:
             Logger.logger.error("Error while building orderInfo : " + str(e))
-            raise OrderPlaceError("Error while building orderInfo", e)
+            raise OrderPlaceError("Error while building orderInfo", str(e))
 
                         
 
@@ -49,10 +49,8 @@ class OrderPlaceController():
 
             order_id = self.orderPlaceService.place_order(orderRequest) 
 
-        except ValueError as e:
-            raise e
         except Exception as e:
-            raise OrderPlaceError("Error while placing order", e)
+            raise e
         
 
         return order_id

@@ -10,4 +10,9 @@ Motive for this project is that, There are some Compalnies shares which were not
 ## Business Requiremnt 
 
 As mentioned in Motivation part that there is onc share TAPARIA Tools which gives 150Rs Dividend while being on value of only Rs 3. 
+So I want some kind of scheduler inorder to place order on behalf of me
 
+
+
+Thanks,
+Herat Makwana

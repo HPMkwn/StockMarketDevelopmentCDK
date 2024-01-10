@@ -135,6 +135,9 @@ class OrderInfo():
 
     def getInstrument(self):
         return self.instrument
+    
+    def getBuilder():
+        return OrderInfoBuilder()
   
 
 

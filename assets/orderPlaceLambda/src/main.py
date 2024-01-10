@@ -13,18 +13,22 @@ orderController = OrderPlaceController(orderService)
 
 
 def handler(event, context) : 
-
+    message = None
     logger.info("Event : " + json.dumps(event))
+    # kiteService.getLTP()   #Inorder to check that is KiteService working or not
 
-    kiteService.getLTP()
 
     # return ResponseBuild(Status.SUCCESS, True, "We have placed order with order_id " + str(order_id))
-    order_id = orderController.placeOrder(event)
+    try : 
+        order_id = orderController.placeOrder(event)
+        message = "We have placed order with order_id " + str(order_id)
+    except Exception as e :
+        message = str(e);
 
-
+    
     return {
         'statusCode': 200,
-        'body': json.dumps({'greeting':  "We have placed order with order_id " + str(order_id)})
+        'body': json.dumps({'greeting':  message})
     }
 
 
