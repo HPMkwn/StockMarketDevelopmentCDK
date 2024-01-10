@@ -1,5 +1,5 @@
 from enum import Enum
-from MetaEnum import _MetaEnum
+from models.MetaEnum import _MetaEnum
 
 
 class OrderType(Enum, metaclass=_MetaEnum):

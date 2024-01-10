@@ -7,3 +7,7 @@ class _MetaEnum(EnumMeta):
         except ValueError:
             return False
         return True   
+    
+
+class MetaEnum(EnumMeta):
+    pass

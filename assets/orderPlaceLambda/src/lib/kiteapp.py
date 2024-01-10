@@ -1,6 +1,7 @@
-import json , requests
-import kiteconnect.exceptions as ex
+import json 
 import logging
+import requests
+import kiteconnect.exceptions as ex
 from six.moves.urllib.parse import urljoin
 from kiteconnect import KiteConnect, KiteTicker
 
